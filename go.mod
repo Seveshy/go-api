@@ -2,9 +2,13 @@ module github.com/devfullcycle/goexpert/9-APIS
 
 go 1.21.0
 
-require github.com/spf13/viper v1.18.2
+require (
+	github.com/spf13/viper v1.18.2
+	golang.org/x/crypto v0.23.0
+)
 
 require (
+	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
 	github.com/goccy/go-json v0.3.5 // indirect
 	github.com/lestrrat-go/backoff/v2 v2.0.7 // indirect
 	github.com/lestrrat-go/httpcc v1.0.0 // indirect
@@ -12,7 +16,7 @@ require (
 	github.com/lestrrat-go/jwx v1.1.0 // indirect
 	github.com/lestrrat-go/option v1.0.0 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
-	golang.org/x/crypto v0.23.0 // indirect
+	github.com/pmezard/go-difflib v1.0.1-0.20181226105442-5d4384ee4fb2 // indirect
 )
 
 require (
@@ -29,6 +33,7 @@ require (
 	github.com/spf13/afero v1.11.0 // indirect
 	github.com/spf13/cast v1.6.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
+	github.com/stretchr/testify v1.9.0
 	github.com/subosito/gotenv v1.6.0 // indirect
 	go.uber.org/atomic v1.9.0 // indirect
 	go.uber.org/multierr v1.9.0 // indirect
