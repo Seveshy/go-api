@@ -17,6 +17,7 @@ require (
 	github.com/lestrrat-go/iter v1.0.0 // indirect
 	github.com/lestrrat-go/jwx v1.1.0 // indirect
 	github.com/lestrrat-go/option v1.0.0 // indirect
+	github.com/mattn/go-sqlite3 v1.14.17 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/pmezard/go-difflib v1.0.1-0.20181226105442-5d4384ee4fb2 // indirect
 )
@@ -44,5 +45,6 @@ require (
 	golang.org/x/text v0.15.0 // indirect
 	gopkg.in/ini.v1 v1.67.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
+	gorm.io/driver/sqlite v1.5.5
 	gorm.io/gorm v1.25.10
 )
