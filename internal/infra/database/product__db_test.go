@@ -18,7 +18,7 @@ func TestCreateNewProduct(t *testing.T) {
 		t.Error(err)
 	}
 	db.AutoMigrate(&entity.Product{})
-	product, err := entity.NewProduct("Product 1", 10.00)
+	product, err := entity.NewProduct("Product 2", 10.00)
 	assert.NoError(t, err)
 	productDB := NewProduct(db)
 	err = productDB.Create(product)
