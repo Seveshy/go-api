@@ -3,7 +3,7 @@ module github.com/devfullcycle/goexpert/9-APIS
 go 1.21.0
 
 require (
-	github.com/go-chi/chi v1.5.1
+	github.com/go-chi/chi v1.5.5
 	github.com/spf13/viper v1.18.2
 	golang.org/x/crypto v0.23.0
 )
@@ -25,7 +25,6 @@ require (
 
 require (
 	github.com/fsnotify/fsnotify v1.7.0 // indirect
-	github.com/go-chi/chi v1.5.5 // indirect
 	github.com/go-chi/jwtauth v1.2.0
 	github.com/google/uuid v1.6.0
 	github.com/hashicorp/hcl v1.0.0 // indirect
