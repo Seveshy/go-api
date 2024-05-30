@@ -25,6 +25,17 @@ func NewUserHandler(userDB database.UserInterface) *UserHandlers {
 	}
 }
 
+// GetJWT godoc
+// @Summary Get a user JWT
+// @Description Get a user JWT
+// @Tags users
+// @Accept json
+// @Produce json
+// @Param request body dto.GetJWTInput true "User credentials"
+// @Success 200 {object} dto.GetJWTInput
+// @Failure 404
+// @Failure 500 {object} Error
+// @Router /users/generate_token [post]
 func (h *UserHandlers) GetJWT(w http.ResponseWriter, r *http.Request) {
 	jwt := r.Context().Value("jwt").(*jwtauth.JWTAuth)
 	jwtExpiresIn := r.Context().Value("JwtExpiresIn").(int)
@@ -36,7 +47,9 @@ func (h *UserHandlers) GetJWT(w http.ResponseWriter, r *http.Request) {
 	}
 	u, err := h.UserDB.FindByEmail(user.Email)
 	if err != nil {
-		w.WriteHeader(http.StatusUnauthorized)
+		w.WriteHeader(http.StatusNotFound)
+		err := Error{Message: err.Error()}
+		json.NewEncoder(w).Encode(err)
 		return
 	}
 	if !u.ValidatePassword(user.Password) {
