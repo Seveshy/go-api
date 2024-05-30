@@ -2,7 +2,6 @@ package handlers
 
 import (
 	"encoding/json"
-	"log"
 	"net/http"
 	"time"
 
@@ -11,6 +10,10 @@ import (
 	"github.com/devfullcycle/goexpert/9-APIS/internal/infra/database"
 	"github.com/go-chi/jwtauth"
 )
+
+type Error struct {
+	Message string `json:"message"`
+}
 
 type UserHandlers struct {
 	UserDB database.UserInterface
@@ -54,6 +57,17 @@ func (h *UserHandlers) GetJWT(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(accessToken)
 }
 
+// CreateUser godoc
+// @Summary Create a user
+// @Description Create a user
+// @Tags users
+// @Accept json
+// @Produce json
+// @Param request body dto.CreateUserInput true "User to create"
+// @Success 201 {string} string "User created"
+// @Failure 400 {string} string "Bad request"
+// @Failure 500 {string} string "Internal server error"
+// @Router /users [post]
 func (h *UserHandlers) CreateUser(w http.ResponseWriter, r *http.Request) {
 	var user dto.CreateUserInput
 	err := json.NewDecoder(r.Body).Decode(&user)
@@ -63,16 +77,16 @@ func (h *UserHandlers) CreateUser(w http.ResponseWriter, r *http.Request) {
 	}
 	u, err := entity.NewUser(user.Name, user.Email, user.Password)
 	if err != nil {
-		// log 1
-		log.Println(err)
 		w.WriteHeader(http.StatusBadRequest)
+		error := Error{Message: err.Error()}
+		json.NewEncoder(w).Encode(error)
 		return
 	}
 	err = h.UserDB.Create(u)
 	if err != nil {
-		// log 2
-		log.Println(err)
 		w.WriteHeader(http.StatusBadRequest)
+		error := Error{Message: err.Error()}
+		json.NewEncoder(w).Encode(error)
 		return
 	}
 	w.WriteHeader(http.StatusCreated)
