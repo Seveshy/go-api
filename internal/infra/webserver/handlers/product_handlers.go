@@ -59,12 +59,11 @@ func (h *ProductHandler) CreateProduct(w http.ResponseWriter, r *http.Request) {
 // @Tags products
 // @Accept json
 // @Produce json
-// @Param page query string false "page number"
-// @Param limit query string false page "limit"
+// @Param page query string true "product ID" Format(uuid)
 // @Success 200 {array} entity.Product
 // @Failure 404 {object} Error
 // @Failure 500 {object} Error
-// @Router /products [get]
+// @Router /products/{id} [get]
 // @Security ApiKeyAuth
 func (h *ProductHandler) GetProduct(w http.ResponseWriter, r *http.Request) {
 	id := chi.URLParam(r, "id")
@@ -131,6 +130,19 @@ func (h *ProductHandler) DeleteProduct(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 }
 
+// GetJWT godoc
+// @Summary Get a user JWT
+// @Description Get a user JWT
+// @Tags products
+// @Accept json
+// @Produce json
+// @Param page query string false "page number"
+// @Param limit query string false page "limit"
+// @Success 200 {array} entity.Product
+// @Failure 404 {object} Error
+// @Failure 500 {object} Error
+// @Router /products [get]
+// @Security ApiKeyAuth
 func (h *ProductHandler) GetProducts(w http.ResponseWriter, r *http.Request) {
 	page := r.URL.Query().Get("page")
 	limit := r.URL.Query().Get("limit")
